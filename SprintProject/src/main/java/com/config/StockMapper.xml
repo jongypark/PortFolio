@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StockMapper">
+
+
+<!-- 상품 재고 sql문 입력 -->
+
+<select id="SellerStockPage" resultType="StockDTO2" parameterType="hashmap">
+select g.gname, g.gimage1  ,s.gsize , s.gcolor , s.gstock , num  from goods g join stock s on
+g.gid = s.gid 
+<where>
+
+	<choose>
+	
+		<when test="search == 'gname'">
+			 sid = #{sid} and gname like '%'||#{stocksearch}||'%'
+		</when>
+	
+		<otherwise>
+			sid = #{sid}
+		</otherwise>
+		
+	</choose>
+	
+</where>
+</select>
+
+
+
+
+<select id="totalStockCount" resultType="int" parameterType="hashmap" >
+select count(*) from stock where gid in (select gid from goods 
+
+<where>
+
+	<choose>
+	
+		<when test="search == 'gname'">
+			 sid = #{sid} and gname like '%'||#{stocksearch}||'%')
+		</when>
+	
+		<otherwise>
+			sid = #{sid})
+		</otherwise>
+		
+	</choose>
+	
+</where>
+
+</select>
+
+<update id="updateStockMinusByDTO" parameterType="CartDTO">
+update stock set
+gstock = gstock - #{cqty}
+where gid = #{gid} and
+	  gsize = #{csize} and
+	  gcolor = #{gcolor}
+
+
+</update>
+
+
+
+<!-- 재고현황 화면 구현2  -->
+<select id="selectgoods" resultType="GoodsDTO">
+select * from goods where sid = #{sid}
+</select>
+
+<!-- 재고등록 구현  -->
+<insert id="SellerStockAdd" parameterType="StockDTO" >
+insert into stock (gid, gsize, gcolor, gstock, num) values (#{gid}, #{gsize}, #{gcolor}, #{gstock}, STOCK_SEQ.nextval)
+</insert>
+
+
+<update id="SellerStockUpdate" parameterType="hashmap">
+update stock set 
+gstock = #{gstock},
+gsize = #{gsize},
+gcolor = #{gcolor}
+where num = #{num}
+
+</update>
+
+<delete id="SellerStockDelete" parameterType="StockDTO" >
+delete from stock where num = #{num}
+</delete>
+
+<select id="SellerStockCheck" resultType="int" parameterType="StockDTO">
+select count(*) from stock where 
+gid = #{gid} and 
+gsize = #{gsize} and
+gcolor = #{gcolor}
+</select>
+
+<select id="selectgidT" resultType="GoodsDTO" parameterType="String">
+select * from goods where gid LIKE '%'||#{T}||'%'
+</select>
+
+<select id="stockCheckByCartDTO" resultType="int" parameterType="CartDTO">
+
+select gstock
+from stock
+where gid = #{gid} and
+gsize = #{csize} and
+gcolor = #{gcolor}
+
+</select>
+
+
+</mapper>

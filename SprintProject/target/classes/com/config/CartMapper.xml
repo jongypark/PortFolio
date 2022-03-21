@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartMapper">
+<!-- create or replace function myorderseq
+return NUMBER
+is
+begin
+   return orderInfo_seq.nextval;
+end;
+/ -->
+
+
+	<select id="cartList" parameterType="string" resultType="CartDTO">
+	select *
+	from cart
+	where mid= #{mid}
+	</select>
+	
+	 <insert id="cartAdd" parameterType="CartDTO" >
+    insert into cart (cid,gid,cqty,csize,gname,gimage,gprice,mid , gcolor ,stock, gcategory)
+    values (cart_seq.nextval,#{gid},#{cqty},
+    #{csize},#{gname},#{gimage},#{gprice},#{mid} , #{gcolor} , #{stock} , #{gcategory})
+   </insert>
+
+
+
+	<delete id="cartDelete" parameterType="int">
+    delete
+    from cart
+    where cid = #{cid}
+   </delete>
+   
+   <delete id="deleteAllByListDTO" parameterType="arraylist">
+   	delete from cart
+	where cid  IN
+	<foreach item="x1" index="index" collection="list"
+	      open="(" separator="," close=")">
+	        #{x1}
+	  </foreach>
+   
+   </delete>
+  
+  
+  
+   <update id="cartUpdate" parameterType="hashmap">
+	  update cart
+	  set cqty = #{cqty}
+	  where cid = #{cid}
+	</update>
+	
+	<select id="selectAllCartByCids"  parameterType="arraylist" resultType="CartDTO" >
+		select *
+		from cart
+		where cid in 
+		<foreach item="x1" index="index" collection="list"
+		     open="(" separator="," close=")">
+		      #{x1}
+		</foreach>
+		
+	</select>
+	
+	
+	
+	
+	
+	<select id="couponSelectByDCCode" resultType="CouponDTO" parameterType="string">
+		select *
+		from coupon
+		where dccode = #{dccode}
+	
+	</select>
+	
+	<select id="couponSelectByCode" resultType="CouponDTO" parameterType="string">
+		select *
+		from coupon
+		where code = #{code}
+	
+	</select>
+	
+	
+	<select id="couponuserSelectByMid" resultType="CouponUserDTO" parameterType="hashmap">
+		select *
+		from couponuser
+		where code = #{code} and mid = #{mid}
+	
+	</select>
+	
+	
+	<update id="couponPlusCurrentNum" parameterType="string">
+		update coupon
+		set current_num = current_num +1
+		where code = #{code}
+	</update>
+	
+	<insert id="insertCouponUser" parameterType="CouponUserDTO">
+	insert into couponuser (cmind,code,mid , issuedtime)
+    values (couponuser_seq.nextval, #{code} , #{mid} , sysdate)
+		
+	</insert>
+	
+	<update id="updateCouponUserUsedByMap" parameterType="hashmap">
+		update couponuser
+		set used = 1 , usedtime= sysdate
+		where code = #{code} and
+			  mid = #{mid}
+		
+	
+	</update>
+	
+	
+	<select id="beforeCartAddCheck" resultType="CartDTO" parameterType="CartDTO">
+		select *
+		from cart
+		where mid = #{mid} and
+			  gid = #{gid} and
+			  csize = #{csize} and
+			  gcolor = #{gcolor}
+	
+	
+	</select>
+	
+	<update id="updateCartAddCqty" parameterType="CartDTO">
+		update cart
+		set cqty = #{cqty}
+		where cid = #{cid}
+	
+	
+	
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,572 @@
+@charset "UTF-8";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Nunito:wght@200;300;400;500;600&display=swap');
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+   /*  border: none; */
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+
+img {
+    user-select: none;
+}
+
+:root{
+    --green: #0eb582;
+    --light-green: #f0fdfa;
+    --light-color: #777;
+    --light-white: #eee;
+    --black:#333;
+    --white:#fff;
+    --border:.1rem solid var(--green);
+    --box-shadow:0 .5rem 1rem rbga(0,0,0,.1);
+
+} 
+
+
+
+
+
+/* header 시작~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/*position : sticky는 스크롤 시 그 요소가 있는 시점까지는 position : relative;처럼 움직이다가
+그 요소의 위치가 넘어가게 되면 position : fixed; 처럼 고정된다.
+
+sticky 선언시에는 부모요소에 필수적으로 넣어야 하는 element가 있다. 
+
+1. (부모/자식 요소)필수 입력 요소 입력 했는가??
+위치 : top, left / right(필수는 아님), z-index
+크기: width, height
+2. (부모 요소)하기 입력 요소들도 입력 했는가??
+overflow-x : hidden;
+overflow-y : scroll;*/
+
+
+
+.header{
+	position: fixed;
+    top: 0; left: 0; right: 0; 
+    background: var(--white);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+	padding: 1.4rem 5%;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    justify-content: space-between;
+    transform: translateY(0rem);
+}
+
+.header.hidden {
+    transform: translateY(-20rem);
+}
+
+
+
+.header .logo{
+	
+	
+    font-size: 1.7rem;
+    /* 텍스트 첫 글자를 대문자로 */
+    text-transform: capitalize;
+    color: #444;
+    font-weight: bolder;
+		
+}
+
+.header .logo i{
+    color: var(--green);
+    margin-right: 10px;
+}
+
+/* #close-navbar 의 기준점 */
+.header .navbar{
+    position: relative;
+}
+
+
+/* x 표시 평소에는 안보이다 768px에서 active시에  */
+#close-navbar{
+    position: absolute;
+    top: 0.8rem; right: 1.8rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--black);
+    display: none;
+}
+
+#close-navbar:hover{
+    transform: rotate(90deg);
+}
+
+
+/* 메뉴들 home/top/bottom 등등  */
+.header .navbar a{
+    margin-right: 7rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: #444;
+   
+}
+.header .navbar a:hover{
+    color: var(--green);
+}
+
+
+
+/* 로그인버튼과 햄버거 버튼 */
+.header .icons div{
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: var(--black);
+    margin-left: 1.5rem;
+}
+
+.header .icons div:hover{
+    color: var(--green);
+}
+
+.header .icons .hide{
+	display: none;
+}
+
+/* 햄버거 버튼은 처음에는 안보이다 브라우져 크기가 작아지면 나오게한다 */
+#menu-btn{
+    display: none;
+}
+
+
+
+
+/* account-form 시작!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* 평소에는 숨어있다가  */
+.account-form{
+    position: fixed;
+    top: 0; right: -105%;
+    width: 22rem;
+    background: var(--white);
+    display: flex;
+    flex-flow: column;
+    gap: 1.2rem;
+    justify-content: center;
+    height: 100%;
+ 
+    /* 내용들 전부 가운데 정렬 */
+    text-align: center;
+    z-index: 1200; 
+    padding: 1.1rem;
+}
+
+/* active시 나오게 하기  */
+.account-form.active{
+    box-shadow: 0 0 0 100vw rgba(0,0,0,.8);
+    right:0;
+}
+/* 클로즈 버튼 누르면 .account-form의 .active가 해제된다.  */
+#close-form{
+    position: absolute;
+    top: 0.8rem; right: 1.8rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--black);
+  
+}
+
+#close-form:hover{
+    transform: rotate(90deg);
+}
+
+.account-form .buttons .btn-main{
+    margin: 0 .5rem;
+}
+
+/* .active시 지금 소비자인지 판매자인지 확인가능  */
+.account-form .buttons .btn-main.active{
+    background: var(--green);
+    color: var(--white);
+}
+
+
+.btn-main{
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    border: var(--border);
+    background: var(--light-green);
+    color: var(--green);
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.btn-main:hover{
+    background: var(--green);
+    color: var(--white);
+}
+
+
+
+/* 평소에 숨어 있다가 form 에 active이면 block이여서 보이게 한다 */
+.account-form form{
+    border: var(--border);
+    padding: 1.2rem;   
+    display: none;
+}
+.account-form form.active{
+    display: block;
+}
+
+
+
+/* 글자 Login form  */
+.account-form form h3{
+    font-size: 1.7rem;
+    color: #444;
+    padding-bottom: .2rem;
+    /* 전체 대문자 */
+    text-transform: uppercase;
+}
+
+/* input 꾸미기 */
+.account-form form .login-box{
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: var(--border);
+    font-size: 1rem;
+    margin: .7rem 0;
+
+}
+
+
+/* 박스안 3개 글자들~ */
+.account-form form .flex{
+    padding: 0.4rem 0;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: .5rem;
+
+}
+
+
+.account-form form .flex a{
+    font-size: 1rem;
+    color: var(--light-color);
+    white-space: nowrap;
+       
+}
+
+.account-form form .flex a:hover{
+    color: var(--green);
+}
+
+
+.account-form form .btn-main{
+    width: 100%;
+}
+
+
+/* account-form 끝!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
+/* member-form 시작 */
+
+.member-form{
+    position: fixed;
+    top: 0; right: -105%;
+    width: 22rem;
+    background: var(--white);
+    display: flex;
+    flex-flow: column;
+    gap: 1.2rem;
+    justify-content: center;
+    height: 100%;
+ 
+    text-align: center;
+    z-index: 1200; 
+    padding: 1.1rem;
+}
+/* active시 나오게 하기  */
+.member-form.active{
+    box-shadow: 0 0 0 100vw rgba(0,0,0,.8);
+    right:0;
+}
+
+/* member-form 끝 */
+
+.navbar2 a{
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #444;
+}
+
+.navbar2 a:hover{
+    color: var(--green);
+}
+
+#close-member{
+    position: absolute;
+    top: 0.8rem; right: 1.8rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--black);
+    
+}
+
+#close-member:hover{
+    transform: rotate(90deg);
+}
+
+
+
+
+
+/*  다른페이지 member/main 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+.container-m{
+   
+    min-width: 1300px;
+    width:100%;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+
+
+
+.container-m .row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   
+}
+
+.container-m .col-2{
+	text-align: center;
+    flex-basis: 50%;
+    min-height: 300px;
+}
+
+.container-m .col-2 img{
+    width: 100%;
+    height:100%;
+    
+    object-fit:cover;
+}
+
+.container-m .col-2 h1{
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+}
+
+.container-m .col-2 .btn-m{
+    display: inline-block;
+    background: #ff523b;
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.container-m .col-2 .btn:hover{
+    background: #563434;
+}
+
+
+
+
+/* end 다른페이지 member/main 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+
+
+
+
+
+
+/* 미디어 쿼리 ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media (max-width:1360px){
+.header .navbar a{
+    margin-right: 6rem;
+   
+}
+
+}
+
+@media (max-width:1350px){
+.header .navbar a{
+    margin-right: 5rem;
+   
+}
+
+}
+
+
+
+@media (max-width:1280px){
+    .header{
+        padding: 1.5rem 2.5%;
+    }
+    .header .navbar a{
+    margin-right: 5.2rem;   
+}
+}
+
+@media (max-width:1100px){
+.header .navbar a{
+    margin-right: 4.5rem;   
+}
+}
+
+
+
+
+@media (max-width:1050px){
+
+   
+    .header{
+        padding: 1rem;
+    }
+    .header .navbar a{
+    margin-right: 3rem;   
+	}
+}
+
+
+
+
+
+@media (max-width:910px){
+.header .navbar a{
+    margin-right: 2.5rem;   
+}
+}
+
+
+@media (max-width:850px){
+.header .navbar a{
+    margin-right: 1.9rem;   
+}
+}
+
+
+@media (max-width:800px){
+.header .navbar a{
+    margin-right: 1.5rem;   
+}
+}
+
+
+/* 3단계 */
+@media (max-width:768px){
+
+    /* 햄버거 버튼 등장~ 누르면 js로 .active 추가 시키기 */
+#menu-btn{
+    display: inline-block;
+}
+
+/* 메뉴 전체가 현위치에서 -105% 오른쪽으로 이동 즉 화면에서 사라진다.  */
+.header .navbar{
+	position: fixed;
+	top: 0; right: -105%;
+    width: 20rem;
+    background: var(--white);
+   /*  box-shadow: 0 0 0 100vw rgba(0,0,0,.8); */
+ 	height: 100%;
+ 	display: flex;
+ 	flex-flow: column;
+ 	justify-content: center;
+ 	z-index: 1200;
+}
+
+
+.header .navbar.active{
+	 right: 0;
+	 box-shadow: 0 0 0 100vw rgba(0,0,0,.8);
+}
+
+
+
+/* x표시 다시 등장~ js로 class active class 삭제하기 */
+#close-navbar{
+    display: block;
+}
+
+/* 가운데 정렬 위아래 마진, 글씨크기 키우기 색깔 변경 */
+.header .navbar a{
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+
+.container-m .col-2 h1{
+    font-size: 25px;
+    line-height: 30px;
+    margin: 25px 0;
+}
+
+.container-m .col-2 p{
+	font-size: 13px;
+}
+
+.container-m .col-2 .btn-m{
+    font-size: 10px;
+}
+
+
+}
+
+
+@media (max-width:450px){
+
+.container-m .col-2 h1{
+    font-size: 15px;
+    line-height: 20px;
+    margin: 15px 0;
+}
+
+.container-m .col-2 p{
+	font-size: 10px;
+}
+
+.container-m .col-2 .btn-m{
+    font-size: 8px;
+}
+
+.header .icons div {
+    margin-left: 0.6rem;
+}
+
+}
+
+
+@media (max-width:350px){
+
+	
+.header .icons div {
+    margin-left: 0;
+}
+}
+
+

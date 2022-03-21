@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderMapper">
+	
+	
+	<update id="ret" parameterType="OrderProductDetailDTO" >
+		
+	update orderproductdetail 
+       set confirmed = #{confirmed}
+     where gid = #{gid}
+	</update>
+	
+	<update id="ref2" parameterType="OrderDTO" >
+		
+	update orders 
+       set oconfirmed = #{oconfirmed}
+     where oid = #{oid}
+	
+	</update>
+	
+	
+	
+	
+	
+	<select id="info" resultType="OrderChartDTO" parameterType="OrderChartDTO">
+				select 
+					  o.opindex, 
+					  d.gid,
+					  d.gname, 
+					  d.gsize, 
+					  d.gamount, 
+					  d.gcolor, 
+					  d.gprice, 
+					  d.gimage, 
+					  o.oaddress1,
+					  o.ordate,
+					  o.oname,
+					  o.ophone1,
+					  o.ophone2,
+					  o.ophone3, 
+					  o.oprice,
+					  c.code,
+					  p.discount,
+					  o.odelivery,
+					  o.oconfirmed,
+					  l.deliverystatus
+				 from orders o
+			     join orderproductdetail d 
+				   on o.opindex = d.opindex 
+			left join orderdelivery l
+				   on o.odelivery = l.odelivery
+			     join orderproduct c 
+				   on o.opindex = c.opindex
+		    left join coupon p
+				   on c.code = p.code
+				where o.oid = #{oid} 
+				  and o.mid= #{mid}
+	</select>
+	
+
+	
+ 	
+	<select id="orderChart" resultType="OrderChartDTO" >
+	select 	
+	      o.mid,
+	      o.oid,
+	      o.opindex,
+	      o.oimage,
+	      o.oproductname,
+		  o.oprice,
+		  o.odelivery,
+		  d.deliverystatus,
+		  o.opaymentcheck,
+		  o.oconfirmed
+	 from orders o
+left join orderdelivery d
+	   on o.odelivery = d.odelivery 
+	where mid = #{mid} 
+    order by o.opindex
+	</select>
+	
+	<select id="checkCreditCardByDTO" resultType="string" parameterType="CreditCartDTO">
+		select creditid
+		from creditcard
+		where mid = #{mid} and company = #{company} and 
+			  cardnumber = #{cardnumber} and day = #{day}
+			  and month = #{month} and cvv = #{cvv}
+	
+	</select>
+	
+	
+	<select id="checkBankAccountByDTO" resultType="string" parameterType="BankAccountDTO">
+	 select bankid
+	 from bankaccount
+	 where mid = #{mid} and 
+	       accountnumber = #{accountnumber} and
+	       accountname = #{accountname} and
+	       bank = #{bank}
+	
+	</select>
+	
+	<insert id="insertCreditCardByDTO" parameterType="CreditCartDTO">
+	insert into creditcard(creditid , mid , company , cardnumber,day,month,cvv)
+	 values('credit' || creditcard_seq.nextval , #{mid} , #{company} , #{cardnumber} , #{day} , #{month} , #{cvv})
+	
+	</insert>
+	
+	<insert id="insertBankAccountByDTO" parameterType="BankAccountDTO">
+	insert into bankaccount(bankid , mid , accountnumber,accountname , bank)
+	values( 'bank' || bankaccount_seq.nextval , #{mid} , #{accountnumber} , #{accountname} , #{bank}   )
+	</insert>
+	
+	
+	<insert id="insertPayMentByCreditid" parameterType="string">
+	insert into payment(paymentid , creditid) values('payment' || payment_seq.nextval , #{creditid})
+	
+	</insert>
+	
+	<insert id="insertPayMentByBankid"  parameterType="string">
+	insert into payment(paymentid , bankid) values('payment' || payment_seq.nextval , #{bankid})
+	
+	</insert>
+	
+	
+	<insert id="insertOrderProduct" parameterType="OrderProductDTO"  >
+	
+
+	insert into orderproduct(opindex , code , bundle) 
+	values(orderproduct_seq.nextval , #{code} , #{bundle})
+	
+	</insert>
+	
+	<insert id="insertOrderProductBynoCode" parameterType="OrderProductDTO"  >
+	
+	insert into orderproduct(opindex  , bundle) 
+	values(orderproduct_seq.nextval  , #{bundle})
+	
+	</insert>
+	
+	<insert id="insertOrdersByDTO"  parameterType="OrderDTO" >
+	
+	insert into orders(oid , mid , oname , ophone1 , ophone2 , ophone3 , oaddress1 ,oaddress2 , opost , paymentid ,opindex , oproductname , oprice , oimage , opaymentcheck,odelivery , oconfirmed)
+	values(order_seq.nextval , #{mid} , #{oname} , #{ophone1} , #{ophone2}, #{ophone3}, #{oaddress1}
+	, #{oaddress2} , #{opost} , #{paymentid} , #{opindex} , #{oproductname} , #{oprice} , #{oimage} , #{opaymentcheck} , 0 , 0 )
+	
+	</insert>
+	
+	<insert id="insertOrderProductDetailBydto" parameterType="OrderProductDetailDTO">
+		insert   into orderproductdetail(opdindex,opindex,gid, gname , gsize,gamount,gcolor,gprice,gimage,confirmed)
+	        values( 'opd' || orderproductdetail_seq.nextval , #{opindex} ,#{gid} , #{gname} , #{gsize}, #{gamount} 
+	        , #{gcolor} , #{gprice} , #{gimage} ,0  )
+	</insert>
+	
+	
+	
+	<select id="selectOrderProductSequence" resultType="int">
+		SELECT orderproduct_seq.currVAL FROM DUAL 
+	
+	</select>
+	
+	<select id="selectOrdersSequence" resultType="int">
+		SELECT order_seq.currVAL FROM DUAL 
+	</select>
+	
+
+	
+	<select id="checkPayMentByCreditid" resultType="string" parameterType="string">
+	select paymentid
+	from payment
+	where creditid = #{creditid}
+	
+	</select>
+	
+	<select id="checkPayMentByBankid" resultType="string" parameterType="string">
+	select paymentid
+	from payment
+	where bankid = #{bankid}
+	
+	</select>
+	
+
+</mapper>
