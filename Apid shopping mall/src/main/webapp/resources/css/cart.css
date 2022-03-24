@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap'); 
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Mulish', sans-serif; 
+} 
+
+.container-fluid{
+    margin-top: 80px;
+}
+
+
+p { 
+    color: #6c757d; 
+} 
+
+/* collapse 의 a태그 부분  */
+a { 
+    text-decoration: none; 
+    color: #4f4f4f; 
+} 
+
+a:hover { 
+    text-decoration: none;
+    color: #4f4f4f; 
+}
+
+/* h2는 cart(0)과 total amount of 2개  */
+h2 { 
+    color: #4f4f4f; 
+    font-size: 1.5rem; 
+} 
+
+
+
+.main_cart { 
+    background: #fff; 
+} 
+
+/* 마지막 hr은 제거 */
+.main_cart hr:last-child{
+	display: none;
+}
+
+/* 기본적으로 가지고 있는 보더 제거 */
+.card { 
+    border: none; 
+} 
+
+/* 이미지 크기 제한  */
+.product_img img {
+    min-width: 200px; 
+    max-height: 200px; 
+} 
+
+/* The Total Amount Of  */
+.product_name { 
+    color: black; 
+    font-size: 1.4rem; 
+    text-transform: capitalize; 
+    font-weight: 500; 
+} 
+
+.card-title p { 
+	font-size: 0.9rem; 
+    font-weight: 500; 
+} 
+
+/* remove wish 부분 가격 */
+.price_money h3 { 
+    font-size: 1rem;
+    font-weight: 600; 
+} 
+
+
+.set_quantity { 
+    position: relative; 
+} 
+
+.set_quantity::after { 
+    content: attr(data-stock); 
+    width: auto; height: auto; 
+    text-align: center;
+    position: absolute; 
+    bottom: -20px; 
+    right: 2rem; 
+    font-size: 0.8rem; 
+    color: #6c757d; 
+} 
+
+
+/* - + 버튼  */
+.page-link { 
+    line-height: 16px; 
+    width: 45px; 
+    font-size: 1rem; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: #495057; 
+} 
+
+.page-item input { 
+    line-height: 22px; 
+    padding: 3px; 
+    font-size: 15px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+} 
+
+
+.page-link:hover { 
+    text-decoration: none; 
+    color: #495057; 
+    outline: none !important; 
+} 
+
+
+.page-link:focus { 
+    box-shadow: none; 
+} 
+
+
+.price_indiv p { 
+    font-size: 1.1rem; 
+    margin-bottom: 5px;
+} 
+
+
+.remove,
+.fa-trash-alt,
+.fa-heart{
+    cursor: pointer;
+}
+
+.remove:hover{
+    color:blue;
+}
+.fa-heart:hover { 
+    color: red; 
+}
+
+
+.addItems {
+    margin-bottom: 12px;
+}
+
+.addItems p{
+	font-size:0.9rem;
+    margin-bottom: 0;
+}
+
+.fixedDiv{
+    position: fixed;
+    width: 28%;
+}
+
+.card-body.nopadding{
+    padding: 0;
+}
+
+
+
+#coupon_delete{
+	display: none;
+}
+
+/* 왜 안먹지??  */
+#couponDiv{
+	display: none;
+}
+
+@media (max-width: 992px){
+    
+    .fixedDiv{
+        position: relative;
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+

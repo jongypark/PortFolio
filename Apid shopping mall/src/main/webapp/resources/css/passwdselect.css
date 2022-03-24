@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.passwdselect-all{
+	padding:42px;
+	text-align: center;
+}
+.passwdselect-btn{
+	text-align: center;
+    padding: 10px;
+}
+
+#btn-sub{
+	background: #20dbc2;
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 3px;
+    width: 60px;
+    height: 30px;
+}
+#close{
+	 background: #20dbc2;
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 3px;
+    width: 60px;
+    height: 30px;
+}
+span{
+	text-align: center;
+    color: white;
+    background: #20dbc2;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 2px;
+    
+}
+.span-id{
+	margin: 5px;
+}
+.span-name{
+	margin: 5px;
+}
+.span-selcet{
+	margin: 5px;
+}
+
+.passwdselect-text{
+	    border: none;
+    border-radius: 4px;
+    background: #f0f0f0;
+    padding: 5.5px;
+}
+#mname{
+	margin-left: auto;
+}
+
+

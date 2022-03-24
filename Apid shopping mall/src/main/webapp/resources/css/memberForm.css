@@ -1,0 +1,526 @@
+@charset "UTF-8";
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+
+}
+
+.container-box{
+	
+	position: relative;
+}
+
+/* 임시 버튼들~~~~~~~~~~~~~~~~~ */
+.toSeller{
+    position: absolute;
+    right: 30px;
+ 	top:90px;
+    display: inline-block;
+   
+    padding: 0.5rem 2rem;
+    font-size: 1.3rem;
+    border: 0.1rem solid #0eb582;
+    background: linear-gradient(to right, #20dbc2 0%,  #4481eb 100%);
+    color: rgb(49, 41, 41);
+    cursor: pointer;
+    text-transform: capitalize;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+
+.toMember{
+    position: absolute;
+    right: 30px;
+  	top:90px;
+    display: inline-block; 
+    padding: 0.5rem 2rem;
+    font-size: 1.3rem;
+    border: 0.1rem solid #0eb582;
+    background:  linear-gradient(to right, #ff105f , #ffad06);
+    color: black;
+    cursor: pointer;
+    text-transform: capitalize;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+
+
+/* 시작~~~~ */
+
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+    transition: 0.5s;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    /*  이미지 2 회원가입폼1 비율로 grid사용 */
+    grid-template-columns: repeat(2, 1fr);  
+    padding: 0 2rem;
+}
+
+/* container의 첫번째 박스.   */
+.img{
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    padding-left: 120px;
+    transition: 0.5s;
+}
+
+
+/* 이부분이 이미지 슬라이드 외부 api이다.  */
+.owl-carousel .owl-item .login_img{
+    width: 500px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-right: 3rem;
+} 
+
+
+/* 이미지 바뀔때 점부분, 분명히 본문에는 이런 클래스가 없지만 외부api를 사용하기에 쓰게된다. 그래서 
+값을 변경하려면 !important를 사용해서 바꿔야 한다. 기본값은 이미지 아래 가로배치인데 여기서는 세로 배치로 변경,
+ 위치도 이미지 왼쪽으로 이동시켰다 */
+.owl-dots{
+    position: fixed;
+    /* padding: 3rem 1.2rem; */
+	/* 점 세로 배치 */
+    display: flex !important;
+    flex-direction: column;
+	/* 점 위치 이동 */
+    transform: translate( -100px ,-240px);
+}
+
+/*  */
+.owl-dots button{
+    border-radius: 5rem;
+    margin: .3rem 0;
+}
+
+.owl-dots button span{
+    background: white !important;
+    margin: 0rem .6rem !important;
+}
+
+.owl-dots .active{
+    border: 1px solid #ffd765 !important;
+}
+
+.owl-dots .active span{
+    background: #ffd765 !important;
+    margin: .3rem .5rem !important;
+}
+
+
+
+/* 로그인 폼 부분~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* container의 두번째 박스 */
+.login-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+
+/* css 안먹는다.   */
+.login-content h1{
+	margin: 15px 0;
+	color: #333;
+	text-transform: uppercase;
+	font-size: 3.5rem;
+}
+
+
+
+
+/* 여기부터 변경~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* 
+	step 회원가입 + 2개의 form이 존재한다. 그래서 step 3단계 * 2 + 2개form해서 8개의 box가 absoulte로 평소에 숨어있다가 나온다
+	부모는 당연히 wrapper
+	버튼 이벤트시 해당 위치에 위치시키고 나머지는 wrapper박스 밖에 있다. wrapper에  overflow: hidden;이 있어서 
+	
+ */
+
+/* overflow hidden으로 숨어있는 form들이 안보이게 한다.  */
+.wrapper{
+    /* width: 360px; */
+    /*height: 380px; */
+    /*step이 3단계니가 각단계마다 150px 씩 잡아먹을것이다.   */
+    width: 450px;
+    height: 460px;
+    margin: 5% auto;
+    background: white;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+
+/* 판매자폼은 위쪽에 숨어있다. 이벤트로 forms 와 formm 이 top이 바뀐다. 0 ->500px -> 0 으로  */
+.wrapper .form-s{
+    position: absolute;
+    top:500px;
+    left: 0px;
+    transition: 0.5s;
+}
+
+/* 처음은 소비자 폼이 위치해있다.   */
+.wrapper .form-m{
+    position: absolute;
+    top:0;
+    left: 0px;
+    transition: 0.5s;
+}
+
+.wrapper form h3{
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    color: #777;
+    font-size: 30px;
+}
+
+/* step별 3단계 *2 해서 6개 필요하다.   */
+.wrapper .form1,
+.wrapper .form2,
+.wrapper .form3,
+.wrapper .form4,
+.wrapper .form5,
+.wrapper .form6{
+    /* width: 280px; */
+    width: 400px;
+    position: absolute;
+    top: 70px;
+    left: 20px;    
+    transition: 0.5s;
+}
+
+
+/* 평소에는 숨어있다.  */
+.wrapper .form2,
+.wrapper .form3,
+.wrapper .form5,
+.wrapper .form6{
+    left: 450px;
+}
+
+/* input 공통부분 ,   */
+.wrapper form input{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border-radius: 3px;
+    border: 1px solid #d5dbd9;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+
+}
+
+/* col-1은 아이디 비번, 비번확인등 부분의 너비를 정의 flex로 편하게 나누기  */
+/* 이렇게 col을 이용하는 이유는 input이 한줄에 1개일때, 2개일때 , 3개일때 시작과 끝부분의 기준선을 맞추기 위해서다. 
+	시작부분과 끝부분이 안맞으면 매우 보기싫다. 
+ */
+.wrapper .col-1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper .col-1 input:first-child{
+    width: 76%;
+}
+/* 글씨를 span으로 할까 하다가 input사용하기로 함..  */
+.wrapper .col-1 input:last-child{
+    width: 20%;
+    border: 0;
+    border-bottom: 1px solid #d5dbd9;
+    font-size: 13px;
+    color: #ff105f;
+    font-weight: 700;
+}
+
+
+/* col-2는 input박스가 한줄에 동일한 너비로 2개 있다. flex로 편하게 배치  */
+.wrapper  .col-2{
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+} 
+/* 동일 너비로 나누기 */
+.wrapper .col-2 input{
+    width: 49%;
+}
+
+/* 우편번호 버튼 css */
+.wrapper .col-2 .btn-sign{
+    padding: 8px 10px;
+    font-size: 15px; 
+    border: 0px;
+    background:  #5995fd;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+}
+
+/* col-3는 input박스가 한줄에 3개 이들을 flex로 배치하기 */
+.wrapper .col-3{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* col-3는 input박스가 한줄에 3개  */
+.wrapper .col-3 input{
+    width: 30%;
+}
+
+/* 얘를 기준으로(relative) 아래방향 화살표를 배치 */
+.wrapper .col-3 .custom_select1{
+    position: relative;
+    width: 30%;
+    height: 100%;
+}
+
+/* 아래방향 화살표 만들어 위치시키기 absolute이다.  */
+.wrapper  .col-3 .custom_select1:before{
+    content: "";
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    border: 8px solid;
+    border-color: #d5dbd9 transparent transparent transparent;
+    pointer-events: none;
+}
+
+.wrapper  .col-3 .custom_select1  select{
+    -webkit-appearance: none;
+    -moz-appearance:   none;
+    appearance:        none;
+    outline: none;
+    /* 부모인 custom_select1 이 전체의 30%너비인데 그걸 다쓴다는 뜻  */
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1px solid #d5dbd9;
+    border-radius: 3px;
+}
+
+
+
+
+.wrapper form input::placeholder{
+    color: #777;
+}
+
+/* Next , Back 버튼 css */
+.wrapper form .btn-box{
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.wrapper form button{
+    width: 150px;
+    height: 50px;
+    margin: 0 10px;
+    background: linear-gradient(to right, #ff105f , #ffad06);
+    border-radius: 30px;
+    border: 0;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 판매자 버튼은 색깔 바꾼다 */
+.wrapper .form-s button{
+    background: linear-gradient(to right, #20dbc2 0%,  #4481eb 100%);
+}
+
+/* step1~3의 글자들의 배치를 위해 flex사용했다. */
+.step-row{
+    width: 450px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -1px 5px -1px #000;
+    position: relative;
+}
+/* step 글자들 */
+.step-row .step-col{
+    width: 150px;
+    text-align: center;
+    color: #333;
+    position: relative;
+}
+
+/* step1~3의 색깔을 나타낸다. 1단계 120px 2단계 240px 3단계 360px */
+#progress{
+    position: absolute;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right, #ff105f , #ffad06);
+    transition: 1s;
+}
+
+/* 오른쪽 > 이거모양 만들기 */
+#progress::after{
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid #ffad06;
+}
+
+#progress2{
+    position: absolute;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right, #20dbc2 0%,  #4481eb 100%);
+    transition: 1s;
+}
+
+/* 오른쪽 > 이거모양 만들기 */
+#progress2::after{
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid #4481eb ;
+}
+
+
+
+
+
+
+/* 노가다로 브라우져 크기마다 css 모양 안나뻐지게 작업하기.  */
+@media screen and (max-width: 1450px){
+	.container{
+		grid-gap: 1rem;
+	}
+    .img {
+        max-width: 800px;
+    }
+}
+
+@media screen and (max-width: 1350px){
+
+    .img {
+        max-width: 700px;
+    }
+}
+
+@media screen and (max-width: 1250px){
+
+    .img {
+        max-width: 600px;
+    }
+
+    .owl-carousel .owl-item .login_img {
+        width: 350px;
+        height: 300px;
+    }
+
+    .wave{
+        width: 700px;
+    }
+
+}
+
+
+@media screen and (max-width: 1150px){
+
+    .img {
+        max-width: 500px;
+    }
+
+
+    .wave{
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 1050px){
+
+    .img {
+        max-width: 400px;
+    }
+
+
+    .wave{
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 950px){
+	.container{
+		grid-template-columns: 1fr;
+	}
+
+	.img{
+		display: none;
+	}
+
+	.wave{
+		width: 1000px;
+	}
+
+	.login-content{
+		justify-content: center;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

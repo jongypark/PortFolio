@@ -1,0 +1,83 @@
+.ordernumber{
+    font-size: small;
+}
+/* 주문상세내역 */
+
+.info_deli{
+    border-bottom: 3px solid black;
+    width: 600px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.infomation_delivery{
+    float: left;
+    margin-top: 50px;
+    margin-left: 300px;
+    
+}
+
+.info_table th{
+    float: left;
+}  
+
+.info_table td{
+    border-spacing: 30px;
+    border-bottom: 1px solid gray;
+
+}
+/* 배송지정보 */
+
+
+.info_coupon{
+    border-bottom: 3px solid black;
+    width: 600px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.information_cuopon{
+    float: right;
+    margin-top: 50px;
+    margin-right: 300px;
+}
+
+.coupon_table th{
+    float: left;
+
+}
+
+.coupon_table td{
+    border-spacing: 10px;
+    border-bottom: 1px solid gray;
+    
+}
+
+/* 쿠폰정보 */
+
+.info_sign{
+    border-bottom: 3px solid black;
+    width: 600px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.information_sign{
+    position: relative;
+    left: 300px;
+    top: 100px;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+.sign_table th{
+    float: left;
+
+}
+
+.sign_table td{
+    border-spacing: 10px;
+    border-bottom: 1px solid gray;
+    width: 200px;
+}
+/* 결재정보 */
