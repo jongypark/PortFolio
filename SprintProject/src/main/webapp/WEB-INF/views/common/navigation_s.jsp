@@ -9,7 +9,7 @@
 	<ul>
 		<li >
 			 <a href="#"  >
-               <span class="icon"><i class="fas fa-bug"></i></span>
+               <span class="icon"><img  alt="" src="resources/images/Apid.png"></span>
                <span class="title">Aphid</span>
                
              </a>

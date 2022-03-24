@@ -36,7 +36,7 @@
 
 	<header class="header">
 	
-		 <a href="/shopMiniMallProject_chul/" class="logo"><i class="fas fa-bug"></i>Aphid</a>
+		 <a href="/shopMiniMallProject_chul/" class="logo"><img class="apid" alt="" src="resources/images/Apid.png">Aphid</a>
 		 <nav class="navbar">
 	         <div id="close-navbar" class="fas fa-times"></div>
 	         <a href="/shopMiniMallProject_chul/">Home</a>
