@@ -1,0 +1,563 @@
+@charset "UTF-8";
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body,input{
+    font-family: 'Poppins' , sans-serif;
+}
+
+
+/* form 과 panel을 전부 감싸는 container */
+.container-loginForm{
+	
+	position: relative;
+	width: 100%;
+	background: #fff;
+	min-height: 100vh;
+	overflow: hidden;
+		
+}
+
+/* 화면의 커다란 공  */
+.container-loginForm:before {
+	 content: "";
+    position: absolute;
+    height: 2000px;
+    width: 2000px;
+    top: -10%;
+    right: 48%;
+    transform: translateY(-50%);
+    background-image: linear-gradient(-45deg, #20dbc2 0%,  #4481eb 100%);
+    transition: 1.8s ease-in-out;
+    border-radius: 50%;
+    z-index: 6;
+}
+
+
+/* 1. 로그인폼 부분 시작~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+/* 부모는 container이다.  */
+
+.forms-container{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	
+}
+
+
+
+/* 얘를 움직여서 form들을 이동시키는 중요한 역할을 한다.  */
+.signin-ms{
+	  /* 1. 위치조정 */
+    position: absolute;
+    /* absolute는 딱 컨텐츠 크기만큼만 공간을 차지한다!!~! */
+    top: 45%;
+    transform: translate(-50%, -50%);
+    left: 75%;
+    /* 2. 너비는 절반 원래는 딱 컨텐츠 크기만큼만 차지하지만 */
+    width: 50%;
+    transition: 1s 0.7s ease-in-out;
+    /* 3. grid 1fr singin-ma는 판매자form과 소비자form 2개가 있는데  */
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: 5;
+	
+}
+
+
+/* 폼 내부 배치문제..  */
+.forms-container form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0rem 5rem;
+    transition: all 0.2s 0.7s;
+    overflow: hidden;
+    /* 이부분을 집중  이거 때매 form2개가 겹친다!!*/
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+
+/* 처음에는 소비자가 보이고 */
+.forms-container form.signin-m-form{
+    z-index: 2;
+}
+/* 판매자는 숨어있다.  */
+.forms-container form.signin-s-form{
+    z-index: 1;
+    opacity: 0;
+}
+
+
+
+
+
+.forms-container form h2{
+    font-size: 2.2rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* input 부분공통부분들  */
+.forms-container form .input-field{
+    max-width: 380px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    /* 아이콘과 input부분의 자리나눔을 grid로 했다.  */
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+
+.forms-container .input-field i{
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    font-size: 1.1rem;
+    transition: 0.5s;
+}
+
+
+.forms-container .input-field input{
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.forms-container .input-field input::placeholder{
+    color: #aaa;
+    font-weight: 500;
+}
+
+
+.btn-loginForm{
+	width: 150px;
+    height: 49px;
+    border: none;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    background-color: #5995fd;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: .5s;
+}
+
+/* 버튼중에 소비자 로그인 버튼만 색깔 변경 */
+.forms-container form .solid1{
+    background-color: #20dbc2;
+}
+.forms-container form .solid1:hover{
+	background-color: #4d84e2;
+}
+
+.btn-loginForm:hover{
+    background-color: #4d84e2;
+
+}
+
+
+
+.forms-container .input-text{
+   
+    display: flex;
+    justify-content: space-between;
+
+}
+.forms-container .input-text a{
+    /* space-between이 안먹어서 극약처방..  */
+   margin: 5px 80px;
+   text-decoration: none;
+   color: #333;
+   white-space: nowrap;
+   font-weight: 500;
+   font-size: 1rem;
+
+}
+
+.forms-container .input-text a:hover{
+    color: #4d84e2;
+}
+
+
+.forms-container .social-text{
+    padding: .7rem 0;
+    font-size: 1rem;
+}
+
+.forms-container .social-media{
+    display: flex;
+    justify-content: center;
+}
+
+.forms-container .social-media .social-icon{
+    height: 46px;
+    width: 46px;
+    border: 1px solid #333;
+    margin: 0 0.45rem;
+    /* 가운데 정렬은 편하게 flex사용하기 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.forms-container .social-media .social-icon:hover{
+    border-color:#4481eb ;
+    color: #4481eb;
+}
+
+
+/* 2. 패널부분 시작 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* 환영멘트와 이미지  */
+
+
+.panels-container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+/* 크게 left패널과 right패널을 가지고 있다. 그둘을 1:1비율로 배치한다.화면의 왼쪽 오른쪽에 2등분하고있다. */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* 패널들의 공통부분 패널은 컨텐츠(글)과 이미지를 가지고 있고 큰화면에서는 위아래로 배치, 작은화면에서는 가로배치한다.   */
+.panel{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    text-align: center;
+    z-index: 6;
+}
+
+
+/* 현재 모드에서는 이벤트 열어둔다. */
+.left-panel{
+    pointer-events: all;
+    padding: 3rem 17% 2rem 12%;
+}
+
+/* 잠깐 이벤트를 막아놓는다.  */
+.right-panel{
+    pointer-events: none;
+    padding: 3rem 12% 2rem 17%;
+}
+
+
+
+.panels-container .panel .content{
+    margin: 40px 40px 0 0;
+    color: black;
+    transition: 0.9s 0.6s ease-in-out ;
+    align-self: center;
+}
+
+
+.panels-container .panel .content h3{
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.5rem;
+}
+
+.panels-container .panel .content p{
+    font-size: 0.95rem;
+    padding: 0.75rem 0;
+}
+
+.btn-loginForm.transparent{
+    margin: 0;
+    background: none;
+    border: 2px solid black;
+    width: 130px;
+    height: 41px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.image{
+    width: 100%;
+    transition: 1.1s 0.4s ease-in-out ;
+}
+
+
+/* 중요부분 평소에는 오른쪽 패널이 브라우져 오른쪽 바깥으로 숨어있다.   */
+.panels-container .right-panel .content,
+.panels-container .right-panel .image{
+    transform: translateX(800px);
+}
+
+
+
+/* 에니메이션 부분!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+/* 공이 이동한다.  */
+.container-loginForm.sign-m-mode::before{
+    transform: translate(100%, -50%);
+    right: 52%;
+
+}
+
+/* 왼쪽읜 환영글과 이미지는 브라우져 왼쪽으로 사라진다 */
+.container-loginForm.sign-m-mode .left-panel .image,
+.container-loginForm.sign-m-mode .left-panel .content{
+    transform:translateX(-800px) ;
+}
+
+/* 사라져있던 오른쪽 환영글과 이미지가 나타난다. */
+.container-loginForm.sign-m-mode .panels-container .right-panel .content,
+.container-loginForm.sign-m-mode .panels-container .right-panel .image{
+    transform: translateX(0px);
+}
+
+/* 왼쪽 이미지 클릭 이벤트 못하게 막고 */
+.container-loginForm.sign-m-mode .left-panel{
+    pointer-events: none;
+}
+/* 오른쪽 이미지 클릭 이벤트 막혔던거 풀어주고 */
+.container-loginForm.sign-m-mode .right-panel{
+    pointer-events: all;
+}
+
+/* 로그인폼이 오른쪽에서 왼쪽으로 이동한다. 높이는 그대로..  */
+.container-loginForm.sign-m-mode .signin-ms{
+    /* 이 left부분이 중요하다.  */
+    left: 25%;
+
+}
+
+/* 로그인폼은 2개가 겹쳐있는데 숨어있던 판매자 로그인이 나오고 z-index순서도 바꾼다. */
+.container-loginForm.sign-m-mode form.signin-s-form{
+    z-index: 2;
+    opacity: 1;
+}
+/* 겹친것중에 보이고 있던 소비자로그인이 숨고  z-index도 조정한다. */
+.container-loginForm.sign-m-mode form.signin-m-form{
+    z-index: 1;
+    opacity: 0;
+    
+}
+
+
+
+/* 미디어 쿼리~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` */
+
+/* 중요한부분...  */
+
+
+@media (max-width:870px){
+	
+	
+.container-loginForm{
+	 margin-top: 50px;
+	 min-height: 800px;
+     height: 100vh;
+}
+	
+	
+
+/* 공크기 조절 및 공 위치 변경  원래 좌우이동이 이제는 위아래 이동으로 바뀜 */
+.container-loginForm::before {
+        width: 1500px;
+        height: 1500px;
+        left: 30%;
+        bottom: 68%;
+        transform: translateX(-50%);
+        /* 기존에 썻떤걸 쓴다는데 잘모르겠다.  */
+        right: initial;
+        top: initial;
+        transition: 2s ease-in-out;
+}	
+	
+	
+
+/* 이게 로그인 폼인데 width가 50->100%로 변경,  */
+.signin-ms{
+        width: 100%;
+        /* 위치부분인데 이게 정답이 아니다 위치는 숫자바꿔서 알아서 조정하기 */
+        top: 85%;
+        transform: translate(-50% , -100%);
+        transition: 1s 0.8s ease-in-out;
+}
+	
+    .signin-ms,
+    .container-loginForm.sign-m-mode .signin-ms {
+        left: 50%;
+    }	
+
+    /* 박스하나는 한줄 차지, 박스가 3개인데 각각위아래로 1:2:1로 배치한다.  */
+    /* 여기서 포인트는 container는 부모 , 그리고 폼컨테이너와 패널컨테이너는 absolute 여서 폼컨테이너가 공간을안차지하기에 
+    , 폼과 패널컨테이너는 부모기준으로 겹쳐저 있기에 , 이런식으로 grid를 나눈것이다. */
+    .panels-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+    }
+
+    /* 화면이 작아지면 패널안의 글과 이미지를 위아래가 아닌 가로배치로 바꾸고 양끝에 위치시킨다.  */
+    .panel{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2.5rem 8%;
+        grid-column: 1 / 2;
+    }
+
+    .panel .content{
+        padding-right: 15%;
+        transition: 0.9s 0.8s ease-in-out ;
+    }
+    .panel h3{
+    	white-space:nowrap;
+        font-size: 1rem;
+    }
+    .panel p{
+        font-size: 0.5rem;
+        padding: 0.5rem 0;
+    }	
+	
+    .btn-loginForm.transparent{
+        width: 110px;
+        height: 35px;
+        font-size: 0.7rem;
+    }
+	
+	 .image{
+        width: 200px;
+        transition: 0.9s 0.6s ease-in-out ;
+    }
+	
+	
+/* 중요 포인트 left패널은 1 /2에 위치  */
+    .left-panel{
+        grid-row: 1 / 2;
+    }
+    /* right패널은 3/ 4에 위치 그래서 2/3은 비어있다.  */
+    .right-panel{
+        grid-row: 3 / 4;
+    }
+	
+	
+    /* 잠시 화면 밖으로 이동 */
+    .panels-container .right-panel .content,
+    .panels-container .right-panel .image{
+        transform: translateY(300px);
+    }
+	
+	
+	  /* 여기부터 에니메이션~~~~~~~~~~~~~~~~~~~~``` */
+
+    /* 1. 공이 위에서 아래로 이동 */
+    .container-loginForm.sign-m-mode::before{
+        transform: translate(-50% , 100%);
+        bottom: 32%;
+        right: initial;
+    }
+	
+	
+        /* 2. 왼쪽 패널은 위로 사라지고 */
+    .container-loginForm.sign-m-mode .left-panel .image,
+    .container-loginForm.sign-m-mode .left-panel .content{
+        transform:translateY(-300px) ;
+    }
+    /* 3. 오른쪽 패널은 제위치에 등장하고 */
+    .container-loginForm.sign-m-mode .right-panel .image,
+    .container-loginForm.sign-m-mode .right-panel .content{
+        transform:translateY(0px) ;
+    }
+	
+	 /* 4. 로그인 폼이 이동한다.  */
+    .container-loginForm.sign-m-mode .signin-ms{
+        /* 이 left부분이 중요하다.  */
+        top: 5%;
+        transform: translate(-50%,0);
+     
+
+    }
+	
+	
+	
+	
+}
+
+
+
+
+@media (max-width:570px){
+
+   
+    .forms-container form{
+        padding: 0 1.5rem;
+    }
+/* 화면이 작아서 이미지 이제 필요없다.  */
+    .image{
+        display: none;
+    }
+
+    .panel .content{
+        padding: 0.5rem 1rem;
+    }
+    .container-loginForm{
+        padding: 1.5rem;
+    }
+/* 공 위치를 좀더 가운데로 변경 */
+    .container-loginForm::before{
+        bottom: 72%;
+        left: 50%;
+    }
+/* 에니메이션~ 공이 아래로는 변함없지만 약간의 위치조정이 있었다.  */
+    .container-loginForm.sign-m-mode::before{
+        bottom: 28%;
+        left: 50%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

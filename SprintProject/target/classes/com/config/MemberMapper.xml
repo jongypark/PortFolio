@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+
+
+
+<insert id="insert" parameterType="MemberDTO">
+	insert into member( mid,mpw,mname,maddress1,maddress2, memail1,memail2 ,mpost , mphone1 ,
+	mphone2 , mphone3 , mbirth ) values
+	
+( #{mid}, #{mpw}, #{mname}, #{maddress1}, #{maddress2}, #{memail1},#{memail2} ,#{mpost} , #{mphone1} ,
+	#{mphone2} , #{mphone3} , to_date(#{mbirth} , 'YYYY-mm-dd') )
+
+</insert>
+
+<select id="idCheck" resultType="int" parameterType="string">
+	select count(*)
+	from member
+	where mid = #{mid}
+
+</select>
+
+<select id="login" resultType="MemberDTO" parameterType="map">
+	select *
+	from member
+	where mid = #{mid} and mpw = #{mpw}
+</select>
+	
+	<select id="mypage" parameterType="string" resultType="MemberDTO">
+	  select *
+      from member
+      where mid = #{mid}
+	</select>
+	
+	<update id="memberUpdate" parameterType="MemberDTO">
+	
+     update member
+     set mpost = #{mpost},
+     maddress1 = #{maddress1},
+     maddress2 = #{maddress2},
+     mphone1 = #{mphone1},
+     mphone2 = #{mphone2},
+     mphone3 = #{mphone3},
+     memail1 = #{memail1},
+     memail2 = #{memail2},
+     mpw = #{mpw},
+     mname = #{mname},
+     mbirth = to_date(#{mbirth} , 'YYYY-mm-dd')
+    where mid = #{mid}
+   </update>
+	
+<select id="selectpasswdM" resultType="MemberDTO" parameterType="MemberDTO">
+	select
+			memail1, <!--  아이디 메일주소  -->
+			memail2, <!--  도메인 주소  -->
+			mpw, <!-- 회원의 비밀번호   -->
+			mname <!-- 회원의 이름 -->
+ 	  from member 
+  	 where 
+  	   mid = #{mid} 
+  	   and 
+  	 mname = #{mname} 
+  	   and 
+   mphone1 = #{mphone1}
+       and 
+   mphone2 = #{mphone2}
+       and 
+   mphone3 = #{mphone3}
+</select>
+
+
+
+
+</mapper>

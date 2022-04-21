@@ -1,0 +1,35 @@
+ .return{
+  width: 1000px;
+} 
+
+
+
+.return_table{
+    position: relative;
+    background: var(--white);
+    box-shadow: 0 20px 50px rgb(0 0 0 / 13%);
+    padding: 20px;
+    border-radius: 20px;
+    justify-content: space-between;
+    cursor: pointer;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+
+}
+
+th{
+    color: blue;
+    font-weight: bold;
+    font-size: larger;
+    width:800px;
+    border-bottom: 1px solid grey;
+}
+
+th,td{
+    padding:7px 10px;
+}
+
+td{
+    border-bottom: 1.5px dashed grey;
+    padding-bottom: 10px ;
+}

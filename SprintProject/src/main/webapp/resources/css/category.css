@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Montserrat', sans-serif;
+   padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   text-transform: capitalize;
+   transition: all .2s linear;
+   
+   /* margin:0;  */
+}
+
+
+/* 카테고리 시작  */
+.image-container{
+	padding: 70px 5%;
+	text-align: center;
+	background-color: white;
+}
+
+.image-container h1{
+	    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.heading{
+	font-size: 30px;
+	padding-bottom: 25px;
+}
+
+
+.image-container .box-container{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap:20px;
+	padding-top: 30px;
+}
+
+
+.image-container .box-container .box{
+	width:350px;
+  background-color: #fff;
+  padding:20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.4);
+	
+	
+}
+
+.image-container .box-container .box .image{
+	 height: 250px;
+ 	 border-radius: 5px;
+	 margin-bottom: 10px;
+	overflow: hidden;/* 화면 커질때  더이상 안켜지게  */
+}
+
+.image-container .box-container .box .image img{
+	height: 100%;
+  width: 100%;
+  object-fit: cover;
+    box-shadow: 0 5px 10px rgba(0,0,0,.4);
+}
+
+.image-container .box-container .box .image:hover img{
+	transform: scale(1.1);
+}
+
+
+
+.image-container .box-container .box .image-content h3{
+	font-size: 20px;
+ 	 color:#334;
+	
+}
+
+.image-container .box-container .box .image-content p{
+  height:50px;	
+  font-size: 15px;
+  color:#777;
+  padding:5px 15px 0 15px;
+
+  display: flex;
+  justify-content: center;	
+  align-items: center;
+}
+
+.image-container .box-container .box .image-content .btn{
+  display: inline-block;
+  padding:10px 30px;
+  border:1px solid #334;
+  color:#334;
+  font-size: 16px;	
+  margin-top: 10px;
+}
+
+.image-container .box-container .box .image-content .btn:hover{
+  background-color: crimson;
+  border-color: crimson;
+  color:#fff;
+	
+}
+
+.image-container .box-container .box .image-content .image-icons{
+	
+	display: flex;
+	justify-content: space-between;
+	 align-items: center;
+	margin-top: 20px;
+    padding-top: 10px;
+    border-top:1px solid #334;
+}
+
+.image-container .box-container .box .image-content .image-icons span{
+	font-size: 14px;
+    color:#777;
+}
+
+.image-container .box-container .box .image-content .image-icons span i{
+	
+}
+
+
+
+
+
+
+
+
+

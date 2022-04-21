@@ -1,0 +1,355 @@
+@charset "UTF-8";
+
+
+*{
+    padding: 0;
+    margin: 0;
+    transition: none;
+}
+
+ul{
+    list-style: none;
+}
+
+
+body{
+    height: 100%;
+    overflow: hidden;
+}
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    margin-top: 170px;
+}
+
+.player1{
+    flex: 1;
+    border-right: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.player2{
+    flex: 1;
+    display: flex;
+}
+
+
+
+
+
+
+.wrapper img.fall {
+    position: absolute;
+    z-index: -1;
+    animation: fall linear infinite;
+}
+
+
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(2000%) rotate(90deg);
+        opacity: 1;
+    }
+}
+
+
+
+.scoreboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 30px;
+}
+
+
+
+.score{
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 2rem;
+}
+
+
+
+.score2{
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 2rem;
+}
+
+
+.stop2{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/* playground~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+.playground{
+    position: relative;
+    width: 250px;
+    margin: 0 0 0 200px;
+    border: 1px solid #333;
+}
+
+.playground2{
+    position: relative;
+    width: 250px;
+ 
+    border: 1px solid #333;
+}
+
+
+.playground > ul{ 
+    position: relative;
+    width: 100%;
+}
+
+.playground > ul > li{
+    width: 100%;
+    height: 25px;
+}
+
+.playground > ul > li > ul{
+    display: flex;
+
+}
+
+.playground > ul > li > ul > li{
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #ccc;
+}
+
+/* player2 */
+.playground2 > ul{ 
+    position: relative;
+    width: 100%;
+}
+
+.playground2 > ul > li{
+    width: 100%;
+    height: 25px;
+}
+
+.playground2 > ul > li > ul{
+    display: flex;
+
+}
+
+.playground2 > ul > li > ul > li{
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #ccc;
+}
+
+
+/* nextblocks~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.nextBlocks{
+    position: relative;
+    width: 100px;
+
+
+    
+}
+
+.nextBlocks span{
+    margin-bottom: 10px;
+}
+
+.nextBlocks > ul{ 
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #333;
+}
+
+.nextBlocks > ul > li{
+    width: 100%;
+    height: 25px;
+}
+.nextBlocks > ul > li > ul{
+    display: flex;
+
+}
+
+.nextBlocks > ul > li > ul > li{
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #ccc;
+}
+
+.nextBlocks > ul > li > ul > li:last-child{
+    border-right:1px solid #333;
+}
+
+.nextBlocks > ul{ 
+    border: 1px solid #333;
+}
+
+
+
+.nextBlocks2{
+    position: relative;
+    width: 100px;
+
+
+    
+}
+
+.nextBlocks2 span{
+    margin-bottom: 10px;
+}
+
+.nextBlocks2 > ul{ 
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #333;
+}
+
+.nextBlocks2 > ul > li{
+    width: 100%;
+    height: 25px;
+}
+.nextBlocks2 > ul > li > ul{
+    display: flex;
+
+}
+
+.nextBlocks2 > ul > li > ul > li{
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #ccc;
+}
+
+.nextBlocks2 > ul > li > ul > li:last-child{
+    border-right:1px solid #333;
+}
+
+.nextBlocks2 > ul{ 
+    border: 1px solid #333;
+}
+
+
+
+
+
+
+
+/* 기타~~~~~~~~~~~~~~~ */
+
+.game{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    color: white;
+    font-size: 50px;
+    z-index: 10;
+
+}
+
+button{
+    padding: 0.5rem 1rem;
+    color: white;
+    background: salmon;
+    border: none;
+    cursor: pointer;
+}
+
+
+.game.game-start{
+    display: flex
+}
+
+
+.game.game-start2{
+    display: flex;
+}
+
+
+.game.game-wait span ,
+.game.game-wait2 span {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+
+
+#comboField ,#comboField2 {
+    position: absolute;
+    left: 27px;
+    top: 320px;
+    width: 384px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    background: transparent;
+    color: black;
+    display: none;
+    z-index: 10;
+}
+
+
+
+
+.tree{
+    background: #67c23a;
+}
+
+.bar{
+    background: salmon;
+}
+
+
+.zee{
+    background: #e6a23c;
+}
+
+.elLeft{
+    background: #8e44ad;
+}
+
+.elRight{
+    background: #16a085;
+}
+
+.square{
+    background: #2c82c9;
+}
+
+.targetting{
+    opacity: 0.3;
+}
